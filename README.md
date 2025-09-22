@@ -8,13 +8,9 @@ Cấu trúc phản hồi của API ở môi trường **Development** và môi t
 
 ---
 
-## CẤU HÌNH BÍ MẬT
-
-Các tệp bí mật trong thư mục `./api/secrets` là cần thiết để khởi chạy API. Yêu cầu tải về [tại đây](...).
-
----
-
 ## BẮT ĐẦU VỚI (./api)
+
+- Tạo tệp bí mật `.env` trong thư mục `./api/secrets`, bổ sung các biến môi trường dựa theo tệp `.env.example`.
 
 - `npm install`
 
@@ -29,6 +25,17 @@ Các tệp bí mật trong thư mục `./api/secrets` là cần thiết để kh
 ### Môi trường Production
 
 - **Khởi chạy với npm:** `npm run production`
+
+---
+
+## Mẫu này đã bao gồm các cấu hình
+
+- Hot reload khi chạy ở môi trường dev.
+- Code convention rules.
+- Chuẩn hóa API Response.
+- Global error & exception handler.
+- Logger (console & file).
+- Kết nối MongoDB sử dụng Mongoose.
 
 ---
 
