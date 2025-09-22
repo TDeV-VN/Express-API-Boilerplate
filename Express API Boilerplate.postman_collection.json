@@ -1,0 +1,422 @@
+{
+	"info": {
+		"_postman_id": "0b72c809-69b7-4e0a-884b-f16329df8131",
+		"name": "Express API Boilerplate",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40849135"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"{{$randomEmail}}\", // Something invalid format\r\n  \"password\": \"{{password}}\",\r\n  \"fullName\": \"{{$randomFullName}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}users/register",
+							"host": [
+								"{{host}}users"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Bad request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"password\": \"123\",\r\n  \"fullName\": \"{{$randomFullName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}users/register",
+									"host": [
+										"{{host}}users"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"Jude30@hotmail.com\", // copy email in Register response\r\n    \"password\":\"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}users/login",
+							"host": [
+								"{{host}}users"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Failed - Email or password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"password\":\"{{$randomPassword}}\",\r\n    \"fullName\": \"{{$randomFullName}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}users/login",
+									"host": [
+										"{{host}}users"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}users/logout",
+							"host": [
+								"{{host}}users"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check permission (success) - With cookie",
+					"protocolProfileBehavior": {
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}users/{{user_id}}/me",
+							"host": [
+								"{{host}}users"
+							],
+							"path": [
+								"{{user_id}}",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check permission (success) - With headers",
+					"protocolProfileBehavior": {
+						"disableCookies": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}users/{{user_id}}/me",
+							"host": [
+								"{{host}}users"
+							],
+							"path": [
+								"{{user_id}}",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check permission (failed) - Token expried",
+					"protocolProfileBehavior": {
+						"disableCookies": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRoYW5odGllbmlkMTIzIiwiZW1haWwiOiJuZ3V5ZW50aGFuaHRpZW4uaWQudm5AZ21haWwuY29tIiwiaWF0IjoxNzU4MTAwMDg1LCJleHAiOjE3NTgxMDAwODZ9.tjgjCuuYUfxafBKMUiXwqYRqPC_mfnfxxGvzWJvJlLs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}users/{{user_id}}/me",
+							"host": [
+								"{{host}}users"
+							],
+							"path": [
+								"{{user_id}}",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check permission (failed) - Token invalid",
+					"protocolProfileBehavior": {
+						"disableCookies": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "Loremipsum",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}users/{{user_id}}/me",
+							"host": [
+								"{{host}}users"
+							],
+							"path": [
+								"{{user_id}}",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh token (success) - With cookie",
+					"protocolProfileBehavior": {
+						"disableCookies": false
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{host}}{{refresh_token_route}}",
+							"host": [
+								"{{host}}{{refresh_token_route}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh token (success) - With body",
+					"protocolProfileBehavior": {
+						"disableCookies": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refreshToken\": \"{{refresh_token}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{refresh_token_route}}",
+							"host": [
+								"{{host}}{{refresh_token_route}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh token (failed) - Token invalid",
+					"protocolProfileBehavior": {
+						"disableCookies": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refreshToken\": \"Loremipsum\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{refresh_token_route}}",
+							"host": [
+								"{{host}}{{refresh_token_route}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh token (failed) - Token expried",
+					"protocolProfileBehavior": {
+						"disableCookies": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRoYW5odGllbmlkMTIzIiwiZW1haWwiOiJuZ3V5ZW50aGFuaHRpZW4uaWQudm5AZ21haWwuY29tIiwiaWF0IjoxNzU4MTY2NjEwLCJleHAiOjE3NTgxNjY2MTF9.fLLpOFqBhWXYhwlBgLhOv7hAlmjb3tMppqKxKi07mrw\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}{{refresh_token_route}}",
+							"host": [
+								"{{host}}{{refresh_token_route}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "refresh_token_route",
+			"value": "users/refresh_token"
+		},
+		{
+			"key": "user_id",
+			"value": ""
+		},
+		{
+			"key": "host",
+			"value": "http://127.0.0.1:3000/v1/"
+		},
+		{
+			"key": "refresh_token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6InRoYW5odGllbmlkMTIzIiwiZW1haWwiOiJuZ3V5ZW50aGFuaHRpZW4uaWQudm5AZ21haWwuY29tIiwiaWF0IjoxNzU4MTY3MjkwLCJleHAiOjI2MjIxNjcyOTB9.yeXpkM7WXdimuqnjn-357AM7Q_7NrtlJfN-mYsuxhl8"
+		},
+		{
+			"key": "access_token",
+			"value": ""
+		},
+		{
+			"key": "password",
+			"value": "$WQf2Y06AgVgWp10"
+		}
+	]
+}
