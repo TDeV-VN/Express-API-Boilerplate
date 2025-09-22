@@ -1,6 +1,7 @@
 const { createLogger, format, transports } = require("winston");
 require("winston-daily-rotate-file");
 import { asyncLocalStorage } from "../middlewares/requestIdMiddleware.js";
+import { env } from "../config/environment.js";
 
 // Format text (console, dev mode)
 const logFormat = format.printf(({ level, message, timestamp, stack }) => {
@@ -52,21 +53,28 @@ class MyLogger {
       format: jsonFormat,
     });
 
-    // Tạo logger
-    this.logger = createLogger({
-      level: "debug",
-      transports: [
-        dailyRotateFileTransportInfo,
-        dailyRotateFileTransportError,
+    const transportsArr = [
+      dailyRotateFileTransportInfo,
+      dailyRotateFileTransportError,
+    ];
+
+    // Chỉ log ra console ở môi trường dev
+    if (env.BUILD_MODE === "dev") {
+      transportsArr.push(
         new transports.Console({
           level: "debug",
           format: format.combine(
             format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
             logFormat,
-            format.colorize({ all: true }) // tô màu toàn bộ dòng log
+            format.colorize({ all: true })
           ),
-        }),
-      ],
+        })
+      );
+    }
+
+    this.logger = createLogger({
+      level: env.BUILD_MODE === "dev" ? "debug" : "info",
+      transports: transportsArr,
       exitOnError: false,
     });
   }

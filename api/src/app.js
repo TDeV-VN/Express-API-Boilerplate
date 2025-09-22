@@ -1,4 +1,3 @@
-const createError = require("http-errors");
 const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
@@ -9,6 +8,7 @@ import { responseFormatMiddleware } from "./middlewares/responseFormatMiddleware
 import cors from "cors";
 import { corsOptions } from "./config/cors.js";
 import { setRequestId } from "./middlewares/requestIdMiddleware.js";
+import ApiError from "./utils/ApiError.js";
 
 const app = express();
 app.use(cors(corsOptions));
@@ -24,7 +24,7 @@ app.use("/v1", APIs_v1);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  next(createError(404));
+  next(new ApiError(404, "Not Found"));
 });
 
 app.use(errorHandlingMiddleware);
