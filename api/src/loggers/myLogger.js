@@ -85,5 +85,5 @@ exports.myLogger = new MyLogger().logger;
 // Usage example:
 // import { myLogger } from "../loggers/mylogger.log.js";
 // myLogger.info('This is an info message');
-// myLogger.error('This is an error message with stack trace', new Error('Sample error'));
+// myLogger.error(err.message, { stack: err.stack });
 // myLogger.debug('This is a debug message');
