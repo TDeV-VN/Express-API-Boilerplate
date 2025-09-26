@@ -8,11 +8,13 @@ Cấu trúc phản hồi của API ở môi trường **Development** và môi t
 
 ---
 
-## BẮT ĐẦU VỚI (./api)
+## BẮT ĐẦU VỚI
+
+- Tại thư mục gốc (chứa `.vscode`), click chuột phải và chọn **Open with VSCode**.
 
 - Tạo tệp bí mật `.env` trong thư mục `./api/secrets`, bổ sung các biến môi trường dựa theo tệp `.env.example`.
 
-- `npm install`
+- Tại thư mục `api`, chạy lệnh `npm install`.
 
 ---
 
@@ -36,13 +38,13 @@ Cấu trúc phản hồi của API ở môi trường **Development** và môi t
 - Global error & exception handler.
 - Logger (console & file).
 - Kết nối MongoDB sử dụng Mongoose.
+- Quản lý các comment với các tag đã chỉ định (TODO, FIXME, WARN, NOTE, HACK,...).
 
 ---
 
 ## QUY CHUẨN MÃ NGUỒN API (CODE CONVENTION)
 
 - API sử dụng gói **ESLint** để thiết lập các nguyên tắc cho cú pháp mã nguồn.
-- Nên sử dụng **Visual Studio Code** kết hợp với **ESLint extension** để trực quan hóa và phát hiện sớm các đoạn mã vi phạm quy chuẩn.
 - Các quy chuẩn được định nghĩa trong tệp `eslint.config.mjs`.
 - Kiểm tra các vi phạm bằng cách thủ công: `npm run lint`
 

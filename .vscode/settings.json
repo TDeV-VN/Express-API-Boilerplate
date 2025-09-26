@@ -1,0 +1,63 @@
+{
+  "editor.tabSize": 2, // số khoảng trắng cho mỗi tab
+  "editor.insertSpaces": true, // dùng space thay vì tab
+
+  "todo-tree.tree.scanAtStartup": true,
+  "todo-tree.general.tags": [
+    "TODO", // Công việc cần hoàn thành.
+    "FIXME", // Lỗi cần sửa gấp.
+    "NOTE", // Ghi chú, ý tưởng hoặc giải thích.
+    "WARN", // Vấn đề tiềm ẩn, cần xem xét.
+    "HACK", // Giải pháp tạm thời, cần cải thiện sau.
+    "REVIEW" // Cần xem lại, đánh giá hoặc phê duyệt.
+  ],
+  "todo-tree.highlights.customHighlight": {
+    "TODO": {
+      "icon": "checklist",
+      "type": "tag",
+      "foreground": "white",
+      "background": "rgba(40, 167, 69, 0.8)",
+      "iconColour": "white",
+      "gutterIcon": true
+    },
+    "FIXME": {
+      "icon": "bug",
+      "type": "text",
+      "foreground": "#dc3545",
+      "background": "transparent",
+      "iconColour": "#dc3545",
+      "gutterIcon": true,
+      "rulerColour": "#dc3545" // Thêm dấu hiệu ở thanh cuộn
+    },
+    "NOTE": {
+      "icon": "light-bulb",
+      "type": "text",
+      "foreground": "#007bff",
+      "background": "transparent",
+      "iconColour": "#007bff"
+    },
+    "WARN": {
+      "icon": "issue-opened",
+      "type": "tag",
+      "foreground": "#e6eb3e",
+      "background": "transparent",
+      "iconColour": "#e6eb3e"
+    },
+    "HACK": {
+      "icon": "shield-slash",
+      "type": "text",
+      "foreground": "#6f42c1",
+      "iconColour": "#6f42c1"
+    },
+    "REVIEW": {
+      "icon": "eye",
+      "type": "text",
+      "foreground": "#17a2b8",
+      "iconColour": "#17a2b8"
+    }
+  },
+  "todo-tree.tree.scanMode": "workspace",
+  "todo-tree.tree.showBadges": true,
+  "todo-tree.tree.expanded": true,
+  "todo-tree.tree.showCountsInTree": true
+}
