@@ -6,7 +6,7 @@ import { userService } from "~/services/userService.js";
 
 const getCurrentUserInfo = async (req, res, next) => {
   try {
-    const user = await userService.getCurrentUserInfo(req.user.id);
+    const user = await userService.getCurrentUserInfo(req.user._id);
 
     res.locals.message = "Get current user info success!";
     res.locals.data = user;
